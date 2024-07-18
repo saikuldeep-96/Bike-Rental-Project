@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="bg-primary text-white text-center py-4">
+        <h1>Admin Dashboard</h1>
+    </header>
+    <main class="container my-4">
+        <section id="userManagement" class="mb-5">
+            <h2>User Management</h2>
+            <ul id="userList" class="list-group">
+                <!-- User list will be populated here -->
+            </ul>
+        </section>
+        <section id="bikeManagement" class="mb-5">
+            <h2>Bike Management</h2>
+            <button class="btn btn-success mb-3" onclick="addBike()">Add Bike</button>
+            <ul id="BikeList" class="list-group">
+                <!-- Bike list will be populated here -->
+            </ul>
+        </section>
+        <section id="bookingManagement" class="mb-5">
+            <h2>Booking Management</h2>
+            <ul id="bookingList" class="list-group">
+                <!-- Booking list will be populated here -->
+            </ul>
+        </section>
+    </main>
+    <footer class="bg-dark text-white text-center py-2">
+        <p>&copy; 2024 Bike Rental</p>
+    </footer>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyC9_atn0PC80j_44bMGwC38FJNqk9DC4ik",
+            authDomain: "rentalbike-dbfdb.firebaseapp.com",
+            projectId: "rentalbike-dbfdb",
+            storageBucket: "rentalbike-dbfdb.appspot.com",
+            messagingSenderId: "756128890576",
+            appId: "1:756128890576:web:bf2e1ca33961e4a94ca8d5",
+            measurementId: "G-E8RK4C24GB"
+          };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        var database = firebase.database();
+
+        document.addEventListener("DOMContentLoaded", function() {
+            displayUserList(); 
+            displayBikeList(); 
+            displayBookingList(); 
+        });
+
+        function displayUserList() {
+            let userList = document.getElementById("userList");
+            userList.innerHTML = ""; 
+        
+            let usersRef = firebase.database().ref('users');
+            usersRef.once('value', (snapshot) => {
+                snapshot.forEach((childSnapshot) => {
+                    let user = childSnapshot.val();
+                    let listItem = document.createElement("li");
+                    listItem.className = "list-group-item d-flex justify-content-between align-items-center";
+                    listItem.textContent = user.name + " - " + user.email;
+                    let deleteButton = document.createElement("button");
+                    deleteButton.className = "btn btn-danger btn-sm";
+                    deleteButton.textContent = "Delete";
+                    deleteButton.addEventListener("click", function() {
+                        deleteUser(childSnapshot.key);
+                    });
+                    listItem.appendChild(deleteButton);
+                    userList.appendChild(listItem);
+                });
+            });
+        }
+        
+        function deleteUser(userId) {
+            firebase.database().ref('users/' + userId).remove()
+            .then(() => {
+                displayUserList();
+            })
+            .catch((error) => {
+                console.error('Error deleting user: ', error);
+            });
+        }
+
+        function displayBikeList() {
+            let bikeList = document.getElementById("BikeList");
+            bikeList.innerHTML = ""; 
+        
+            let bikesRef = firebase.database().ref('bikes');
+            bikesRef.once('value', (snapshot) => {
+                snapshot.forEach((childSnapshot) => {
+                    let bike = childSnapshot.val();
+                    let listItem = document.createElement("li");
+                    listItem.className = "list-group-item d-flex justify-content-between align-items-center";
+                    listItem.textContent = bike.name;
+                    let deleteButton = document.createElement("button");
+                    deleteButton.className = "btn btn-danger btn-sm";
+                    deleteButton.textContent = "Delete";
+                    deleteButton.addEventListener("click", function() {
+                        deleteBike(childSnapshot.key);
+                    });
+                    listItem.appendChild(deleteButton);
+                    bikeList.appendChild(listItem);
+                });
+            });
+        }
+
+        function deleteBike(bikeId) {
+            firebase.database().ref('bikes/' + bikeId).remove()
+            .then(() => {
+                displayBikeList();
+            })
+            .catch((error) => {
+                console.error('Error deleting bike: ', error);
+            });
+        }
+
+        function displayBookingList() {
+            let bookingList = document.getElementById("bookingList");
+            bookingList.innerHTML = ""; 
+        
+            let bookingsRef = firebase.database().ref('bookings');
+            bookingsRef.once('value', (snapshot) => {
+                snapshot.forEach((childSnapshot) => {
+                    let booking = childSnapshot.val();
+                    let listItem = document.createElement("li");
+                    listItem.className = "list-group-item";
+                    listItem.textContent = booking.bikeName + " - Dates: " + booking.dates.join(", ") + " - Total: $" + booking.totalPrice;
+                    bookingList.appendChild(listItem);
+                });
+            });
+        }
+
+        function addBike() {
+            let name = prompt("Enter bike name:");
+            let location = prompt("Enter bike location:");
+            let price = prompt("Enter bike price per day:");
+            let image = prompt("Enter image URL for the bike:");
+
+            if (!name || !location || !price || !image) {
+                alert("Please fill out all fields.");
+                return;
+            }
+
+            let newBike = {
+                id: Date.now(), 
+                name: name,
+                location: location,
+                price: parseFloat(price),
+                image: image
+            };
+
+            let newBikeRef = firebase.database().ref('bikes').push();
+            newBikeRef.set(newBike)
+            .then(() => {
+                displayBikeList();
+                alert("Bike added successfully!");
+            })
+            .catch((error) => {
+                console.error('Error adding bike: ', error);
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,295 @@
+@import url('https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css');
+
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-image: url('bg.jpeg');
+    background-repeat: inherit;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+}
+
+h1, h2 {
+    color: #fff;
+}
+
+main {
+    padding: 20px;
+    flex: 1;
+}
+
+footer {
+    margin-top: 20px;
+    background-color: #484848;
+    color: black;
+    padding: 20px;
+    text-align: center;
+}
+
+header {
+    background-color: #484848;
+    color: black;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar {
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #484848;
+    color: white;
+    padding: 10px 20px;
+    margin: 0;
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 10%;
+    z-index: 1000;
+    box-sizing: border-box;
+    box-shadow: black;
+}
+
+.nav-brand {
+    color: black;
+    font-size: 52px;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-shadow: 4px 4px 8px grey;
+}
+
+.nav-items {
+    display: flex;
+    align-items: center;
+}
+
+.nav-items a {
+    color: black;
+    font-style: oblique;
+    font-weight: 300;
+    text-decoration: none;
+    margin-right: 20px; 
+    display: inline-block;
+}
+
+#intro h2, p {
+    color: #fff;
+}
+
+.title {
+    font-size: 24px;
+}
+
+#intro {
+    text-align: center;
+    margin-top: 90px;
+    padding-right: 60%;
+}
+
+#intro h2 {
+    font-size: 32px;
+}
+
+#intro p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+#intro button {
+    padding: 12px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+#intro button:hover {
+    background-color: #555;
+}
+
+.social-media {
+    margin-bottom: 20px;
+}
+
+.social-media a {
+    margin-right: 10px;
+    color: white;
+}
+
+.social-media img {
+    width: 30px;
+    height: 30px;
+}
+
+#bikeList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+    gap: 20px;
+}
+
+body.availablerides-page {
+    background-image: none;
+    background-color: black;
+}
+
+.bike-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.bike-card img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.bike-card h3 {
+    margin-top: 0;
+    color: #fff;
+}
+
+.bike-card p {
+    margin-bottom: 10px;
+}
+
+.bike-card button {
+    padding: 8px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.bike-card button:hover {
+    background-color: #555;
+}
+
+header h1, footer p {
+    margin: 0;
+}
+
+#bookingForm {
+    margin-top: 20px;
+}
+
+#bookingForm h2 {
+    margin-bottom: 20px;
+}
+
+#bookingForm label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#bookingForm input[type="date"],
+#bookingForm input[type="number"],
+#bookingForm select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#bookingForm button {
+    padding: 12px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+#bookingForm button:hover {
+    background-color: #555;
+}
+
+#totalAmount {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#bookingList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.booking-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.booking-card h3 {
+    margin-top: 0;
+}
+
+.booking-card p {
+    margin-bottom: 10px;
+}
+
+.userlist ul, li {
+    color: #fff;
+}
+
+.details {
+    text-align: center;
+    background-color: black;
+}
+
+#pab {
+    text-align: center;
+    margin-left: 50px;
+    margin-top: 100px;
+}
+
+#registrationForm {
+    width: 80%;
+    max-width: 400px;
+    height: fit-content;
+    margin-bottom: 20px;
+    background-color: black;
+    color: grey;
+    padding-left: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    box-shadow: 0px 0px 2px 2px #484848;
+}
+
+form label {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+form button {
+    display: flex;
+    padding: 12px;
+    padding-left: 15px;
+    margin-left: 30%;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    box-shadow: 2px 2px 2px grey;
+}

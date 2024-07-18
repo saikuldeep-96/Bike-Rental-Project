@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bike Rental</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a href="index.html" class="navbar-brand">
+            <span>B</span>
+            <span>I</span>
+            <span>K</span>
+            <span>E</span>
+            <span>B</span>
+            <span>L</span>
+            <span>E</span>
+            <span>N</span>
+            <span>D</span>
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="About Us.html">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="Contact us.html">Contact Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="yourbookings.html">Bookings</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mt-5">
+        <section id="intro" class="text-center">
+            <h2>Welcome to Bike Rental</h2>
+            <p>Our website offers hassle-free bike rentals, allowing users to explore cities on two wheels with ease. With a simple booking process and a wide range of bikes available, we make urban exploration convenient and enjoyable.</p>
+            <button class="btn btn-primary" onclick="location.href='availablerides.html'">Book a Bike</button>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-light text-center py-3">
+        <div class="social-media">
+            <a href="#"><img src="download.png" alt="Facebook" class="mx-2"></a>
+            <a href="#"><img src="twitter.png" alt="Twitter" class="mx-2"></a>
+            <a href="#"><img src="instagram.png" alt="Instagram" class="mx-2"></a>
+        </div>
+        <p>&copy; 2024 Bike Rental</p>
+    </footer>
+
+    <!-- Firebase Setup -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-database.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyC9_atn0PC80j_44bMGwC38FJNqk9DC4ik",
+            authDomain: "rentalbike-dbfdb.firebaseapp.com",
+            projectId: "rentalbike-dbfdb",
+            storageBucket: "rentalbike-dbfdb.appspot.com",
+            messagingSenderId: "756128890576",
+            appId: "1:756128890576:web:bf2e1ca33961e4a94ca8d5",
+            measurementId: "G-E8RK4C24GB"
+          };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
